@@ -15,6 +15,12 @@ public class MemberBean {
 		this.name = name;
 	}
 
+	public MemberBean(int idx, String id, String name) {
+		this.idx = idx;
+		this.id = id;
+		this.name = name;
+	}
+
 	public int getIdx() {
 		return idx;
 	}

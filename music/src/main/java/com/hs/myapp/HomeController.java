@@ -58,4 +58,13 @@ public class HomeController {
 		memberDao.insert(new MemberBean(id, pw, name));
 		return "redirect:main";
 	}
+	
+	@RequestMapping("/memberList")
+	public String memberList (Model model) {
+		ArrayList<MemberBean> al = memberDao.getList();
+		model.addAttribute("list", al);
+		return "memberList";
+	}
+	
+	
 }

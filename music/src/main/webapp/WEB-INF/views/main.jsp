@@ -94,7 +94,7 @@ table, th, td {
 				<a href="freeBoard">게시판</a>
 			</div>
 			<div>
-				<a href="#">오시는 길</a>
+				<a href="memberList">회원목록</a>
 			</div>
 		</div>
 	</div>
