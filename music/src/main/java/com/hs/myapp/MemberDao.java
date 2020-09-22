@@ -35,13 +35,17 @@ public class MemberDao {
 	
 	@Value("#{sql['member.delete']}")
 	private String delete;
+	
+	@Value("#{sql['member.getCount']}")
+	private String getCount;
 
 	public int insert(MemberBean memberBean) {
 		return jdbcTmp.update(insert, memberBean.getId(), memberBean.getPw(), memberBean.getName());
 	}
 
-	public ArrayList<MemberBean> getList() {
-		ArrayList<MemberBean> memberBean = (ArrayList<MemberBean>) jdbcTmp.query(getList, new MemberBeanMapper());
+	public ArrayList<MemberBean> getList(int start, int end) {
+		ArrayList<MemberBean> memberBean = (ArrayList<MemberBean>) jdbcTmp.query(getList, new Integer[] { start, end },
+				new MemberBeanMapper());
 		return memberBean;
 	}
 
@@ -62,6 +66,10 @@ public class MemberDao {
 	
 	public int delete(String id) {
 		return jdbcTmp.update(delete, id);
+	}
+	
+	public int getCount() {
+		return jdbcTmp.queryForInt(getCount);
 	}
 
 	class MemberBeanMapper implements RowMapper<MemberBean> {
