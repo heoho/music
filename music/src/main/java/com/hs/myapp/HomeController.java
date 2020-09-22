@@ -88,10 +88,22 @@ public class HomeController {
 			return "redirect:goLogin";
 		}
 	}
-	
+
 	@RequestMapping("/logout")
 	public String logout() {
 		return "logout";
+	}
+
+	@RequestMapping("/getMember")
+	public String get(String id, Model model) {
+		model.addAttribute("get", memberDao.get(id));;
+		return "memberUpdate";
+	}
+
+	@RequestMapping("/memberUpdate")
+	public String update(MemberBean memberBean) {
+		memberDao.update(memberBean);
+		return "redirect:main";
 	}
 
 }

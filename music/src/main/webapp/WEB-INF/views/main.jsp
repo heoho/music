@@ -85,14 +85,17 @@ table, th, td {
 			<div>
 				<a href="logout">로그아웃</a>
 			</div>
-			<div>
-				<a href="#">마이페이지</a>
-			</div>
+			<form action="getMember" method="post" name="frm">
+				<div>
+					<input type="hidden" value="<%=session.getAttribute("loginid")%>"
+						name="id"> <a href="#" onclick="reg()">마이페이지</a>
+				</div>
+			</form>
 			<%
 				}
 			%>
 			<div>
-				<a href="freeBoard">게시판</a>
+				<a href="#">게시판</a>
 			</div>
 			<div>
 				<a href="memberList">회원목록</a>
@@ -101,5 +104,11 @@ table, th, td {
 	</div>
 
 	<section></section>
+
+	<script>
+		function reg() {
+			frm.submit();
+		}
+	</script>
 </body>
 </html>

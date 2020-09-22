@@ -15,9 +15,10 @@ public class MemberBean {
 		this.name = name;
 	}
 	
-	public MemberBean(int idx, String id, String name) {
+	public MemberBean(int idx, String id, String pw, String name) {
 		this.idx = idx;
 		this.id = id;
+		this.pw = pw;
 		this.name = name;
 	}
 
