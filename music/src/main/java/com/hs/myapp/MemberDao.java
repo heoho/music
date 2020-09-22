@@ -29,9 +29,12 @@ public class MemberDao {
 
 	@Value("#{sql['member.get']}")
 	private String get;
-
+	
 	@Value("#{sql['member.update']}")
 	private String update;
+	
+	@Value("#{sql['member.delete']}")
+	private String delete;
 
 	public int insert(MemberBean memberBean) {
 		return jdbcTmp.update(insert, memberBean.getId(), memberBean.getPw(), memberBean.getName());
@@ -55,6 +58,10 @@ public class MemberDao {
 
 	public int update(MemberBean memberBean) {
 		return jdbcTmp.update(update, memberBean.getPw(), memberBean.getName(), memberBean.getId());
+	}
+	
+	public int delete(String id) {
+		return jdbcTmp.update(delete, id);
 	}
 
 	class MemberBeanMapper implements RowMapper<MemberBean> {

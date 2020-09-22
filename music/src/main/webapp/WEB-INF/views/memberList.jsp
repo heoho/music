@@ -25,7 +25,7 @@ table, th, td {
 			<c:forEach var="memberBean" items="${list}">
 				<tr>
 					<td>${memberBean.idx}</td>
-					<td><a href="get?id=${memberBean.id}"> ${memberBean.id}</a></td>
+					<td>${memberBean.id}</td>
 					<td>${memberBean.name}</td>
 				</tr>
 			</c:forEach>

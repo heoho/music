@@ -11,8 +11,8 @@
 		<table>
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" name="id" value="<%=session.getAttribute("loginid") %>"
-					readonly="readonly"></td>
+				<td><input type="text" name="id"
+					value="<%=session.getAttribute("loginid")%>" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>비번</th>
@@ -24,12 +24,17 @@
 			</tr>
 		</table>
 		<input type="hidden" name="idx" value="${get.idx}"> <input
-			type="submit" value="수정"> <input type="button" value="취소" onclick="main()">
+			type="submit" value="수정"> <input type="button" value="삭제"
+			onclick="memeberDelete()"> <input type="button" value="취소"
+			onclick="main()">
 	</form>
 	<script>
 		function main() {
 			location.href="main";
 		}
+		function memeberDelete() {
+			location.href="memberDelete?id=<%=session.getAttribute("loginid")%>";
+		} 
 	</script>
 </body>
 </html>

@@ -96,14 +96,21 @@ public class HomeController {
 
 	@RequestMapping("/getMember")
 	public String get(String id, Model model) {
-		model.addAttribute("get", memberDao.get(id));;
+		model.addAttribute("get", memberDao.get(id));
 		return "memberUpdate";
 	}
 
 	@RequestMapping("/memberUpdate")
-	public String update(MemberBean memberBean) {
+	public String memberUpdate(MemberBean memberBean) {
 		memberDao.update(memberBean);
 		return "redirect:main";
+	}
+	
+	@RequestMapping("/memberDelete")
+	public String memberDelete(String id) {
+		// 실제로 삭제되는 코드 = dao 실행
+		memberDao.delete(id);
+		return "memberDelete";
 	}
 
 }
