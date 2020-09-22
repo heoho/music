@@ -68,13 +68,14 @@ public class HomeController {
 		// 페이지 번호 - 문자로 넘어오기 때문에 숫자로 바꿈
 
 		int memberPerPage = 10; // 한화면에 나올 리스트 수
-
+		
+		int firstList = (pageNum - 1) * memberPerPage; // limit 첫 숫자
 		int start = ((pageNum - 1)/memberPerPage)*memberPerPage+1; // 시작 페이지
 		int prevPage = start/10*10; // 이전 버튼
 		int end = start + memberPerPage - 1; // 끝 페이지
 		int nextPage = start+10; // 이전 버튼
 
-		ArrayList<MemberBean> al = memberDao.getList(start, memberPerPage);
+		ArrayList<MemberBean> al = memberDao.getList(firstList, memberPerPage);
 		int count = memberDao.getCount(); // 전체 개수
 		int pageCount = count / memberPerPage; // 페이지 개수
 
@@ -107,11 +108,9 @@ public class HomeController {
 	}
 
 	@RequestMapping("/login")
-	public String login(String id, String pw, Model model, HttpServletRequest request) {
+	public String login(String id, String pw, HttpSession session) {
 		try {
-			model.addAttribute("login", memberDao.login(id, pw));
-			HttpSession session = request.getSession();
-
+			memberDao.login(id, pw);
 			session.setAttribute("loginid", id);
 			System.out.println("로그인완료");
 			return "redirect:main";

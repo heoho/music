@@ -69,7 +69,7 @@ table, th, td {
 
 	<div class="panel_left">
 		<div class="panel_wrap">
-
+		
 			<%
 				if (session.getAttribute("loginid") == null) {
 			%>
@@ -95,7 +95,7 @@ table, th, td {
 				}
 			%>
 			<div>
-				<a href="#">게시판</a>
+				<a href="#"><%=session.getAttribute("loginid") %></a>
 			</div>
 			<div>
 				<a href="memberList">회원목록</a>
