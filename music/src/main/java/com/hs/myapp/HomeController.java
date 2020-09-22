@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +44,7 @@ public class HomeController {
 
 		return "main";
 	}
-	
+
 	@RequestMapping("/main")
 	public String main() {
 		return "main";
@@ -58,13 +61,37 @@ public class HomeController {
 		memberDao.insert(new MemberBean(id, pw, name));
 		return "redirect:main";
 	}
-	
+
 	@RequestMapping("/memberList")
-	public String memberList (Model model) {
+	public String memberList(Model model) {
 		ArrayList<MemberBean> al = memberDao.getList();
 		model.addAttribute("list", al);
 		return "memberList";
 	}
+
+	@RequestMapping("/goLogin")
+	public String login() {
+		return "login";
+	}
+
+	@RequestMapping("/login")
+	public String login(String id, String pw, Model model, HttpServletRequest request) {
+		try {
+			model.addAttribute("login", memberDao.login(id, pw));
+			HttpSession session = request.getSession();
+
+			session.setAttribute("loginid", id);
+			System.out.println("로그인완료");
+			return "redirect:main";
+		} catch (Exception e) {
+			System.out.println("실패");
+			return "redirect:goLogin";
+		}
+	}
 	
-	
+	@RequestMapping("/logout")
+	public String logout() {
+		return "logout";
+	}
+
 }

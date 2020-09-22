@@ -24,12 +24,20 @@ public class MemberDao {
 	@Value("#{sql['member.getList']}")
 	private String getList;
 
+	@Value("#{sql['member.login']}")
+	private String login;
+
 	public int insert(MemberBean memberBean) {
 		return jdbcTmp.update(insert, memberBean.getId(), memberBean.getPw(), memberBean.getName());
 	}
 
 	public ArrayList<MemberBean> getList() {
 		ArrayList<MemberBean> memberBean = (ArrayList<MemberBean>) jdbcTmp.query(getList, new MemberBeanMapper());
+		return memberBean;
+	}
+
+	public MemberBean login(String id, String pw) {
+		MemberBean memberBean = jdbcTmp.queryForObject(login, new String[] { id, pw }, new MemberBeanMapper());
 		return memberBean;
 	}
 

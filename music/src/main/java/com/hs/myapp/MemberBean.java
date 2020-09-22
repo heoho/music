@@ -14,7 +14,7 @@ public class MemberBean {
 		this.pw = pw;
 		this.name = name;
 	}
-
+	
 	public MemberBean(int idx, String id, String name) {
 		this.idx = idx;
 		this.id = id;

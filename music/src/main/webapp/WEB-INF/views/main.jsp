@@ -69,12 +69,13 @@ table, th, td {
 
 	<div class="panel_left">
 		<div class="panel_wrap">
-			<div class="active">
-				<a href="goMember">회원가입</a>
-			</div>
+
 			<%
 				if (session.getAttribute("loginid") == null) {
 			%>
+			<div class="active">
+				<a href="goMember">회원가입</a>
+			</div>
 			<div>
 				<a href="goLogin">로그인</a>
 			</div>
