@@ -95,7 +95,7 @@ table, th, td {
 				}
 			%>
 			<div>
-				<a href="goFreeWrite">게시판</a>
+				<a href="freeBoard">게시판</a>
 			</div>
 			<div>
 				<a href="memberList">회원목록</a>

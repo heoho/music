@@ -156,7 +156,47 @@ public class HomeController {
 	public String freeInsert(String userId, String title, String contents) {
 		// 실제로 DB에 넣는 코드 = dao 실행
 		fbDao.insert(new FBBean(userId, title, contents));
-		return "redirect:main";
+		return "redirect:freeBoard";
+	}
+	
+	@RequestMapping("/freeBoard")
+	public String freeList(@RequestParam(value = "pageNum", required = false, defaultValue = "1") String strNum,
+			Model model) {
+		int pageNum = Integer.parseInt(strNum);
+		// 페이지 번호 - 문자로 넘어오기 때문에 숫자로 바꿈
+
+		int boardPerPage = 10; // 한화면에 나올 리스트 수
+
+		int firstList = (pageNum - 1) * boardPerPage; // limit 첫 숫자
+		int start = ((pageNum - 1) / boardPerPage) * boardPerPage + 1; // 시작 페이지
+		int prevPage = start / 10 * 10; // 이전 버튼
+		int end = start + boardPerPage - 1; // 끝 페이지
+		int nextPage = start + 10; // 이전 버튼
+
+		ArrayList<FBBean> al = fbDao.getList(firstList, boardPerPage);
+		int count = fbDao.getCount(); // 전체 개수
+		int pageCount = count / boardPerPage; // 페이지 개수
+
+		// 전체 개수를 한 화면에 나올 갯수로 나눠서
+		// 나머지가 있다면 1을 더 추가한다.
+		if (count % boardPerPage > 0) {
+			pageCount++;
+		}
+
+		// 마지막 페이지가 총 페이지 수 보다 크면 endPage를 pageCount로 할당
+		if (end > pageCount) {
+			end = pageCount;
+		}
+
+		model.addAttribute("nextPage", nextPage);
+		model.addAttribute("prevPage", prevPage);
+		model.addAttribute("start", start);
+		model.addAttribute("end", end);
+		model.addAttribute("count", count);
+		model.addAttribute("pageCount", pageCount);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("list", al);
+		return "freeBoard";
 	}
 
 }

@@ -15,7 +15,14 @@ public class FBBean {
 		this.userId = userId;
 		this.title = title;
 		this.contents = contents;
-		
+	}
+	
+	public FBBean(int idx, String title, String userId, String rDate, int hit) {
+		this.idx = idx;
+		this.title = title;
+		this.userId = userId;
+		this.rDate = rDate;
+		this.hit = hit;
 	}
 
 	public int getIdx() {
