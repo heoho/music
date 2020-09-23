@@ -100,7 +100,6 @@ public class HomeController {
 		model.addAttribute("count", count);
 		model.addAttribute("pageCount", pageCount);
 		model.addAttribute("pageNum", pageNum);
-		System.out.println(count);
 		model.addAttribute("list", al);
 		return "memberList";
 	}

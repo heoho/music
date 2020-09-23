@@ -15,6 +15,14 @@ li {
 	list-style: none;
 	float: left;
 }
+
+#title{
+	background-color: #fff;
+	border: 0;
+	cursor: pointer;
+	color: blue;
+	font-weight: 700;
+}
 </style>
 </head>
 <body>
@@ -40,7 +48,12 @@ li {
 						<c:forEach var="fbBean" items="${list}">
 							<tr>
 								<td>${fbBean.idx}</td>
-								<td><a href="freeDetail?idx=${fbBean.idx}">${fbBean.title}</td>
+								<form action="freeDetail" method="post" name="frm">
+								<td>
+									<input type="hidden" value="${fbBean.idx}" name="idx">
+									<input type="submit" value="${fbBean.title}" id="title">
+								</td>
+								</form>
 								<td>${fbBean.userId}</td>
 								<td>${fbBean.rDate}</td>
 								<td>${fbBean.hit}</td>

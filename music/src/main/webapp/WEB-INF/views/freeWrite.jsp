@@ -12,7 +12,6 @@ table, th, td {
 </style>
 </head>
 <body>
-
 	<%
 		if (session.getAttribute("loginid") == null) {
 	%>
@@ -27,8 +26,8 @@ table, th, td {
 		<table>
 			<tr>
 				<th>작성자</th>
-				<td><input type="hidden" name="userId"
-					value="<%=session.getAttribute("loginid")%>"> <%=session.getAttribute("loginid")%>
+				<td><input type="hidden" name="userId" value="<%=session.getAttribute("loginid")%>">
+					<%=session.getAttribute("loginid")%>
 				</td>
 			</tr>
 			<tr>
@@ -40,8 +39,8 @@ table, th, td {
 				<td><textarea name="contents"></textarea></td>
 			</tr>
 		</table>
-		<input type="submit" value="글쓰기"> <input type="submit"
-			value="취소" onclick="freeBoard()">
+		<input type="submit" value="글쓰기">
+		<input type="button" value="취소" onclick="freeBoard()">
 	</form>
 	<%
 		}

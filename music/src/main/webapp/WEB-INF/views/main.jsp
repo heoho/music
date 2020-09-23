@@ -57,19 +57,30 @@ table, th, td {
 
 .panel_wrap div a:hover {
 	color: #fff;
-	border-bottom: 1px solid #fff;
+	text-decoration: underline;
 }
 
 .active {
 	border-right: 5px solid #fff;
 }
+
+#myPage {
+	background-color: #000;
+	color: #fff;
+	font-size: 22px;
+	font-weight: 700;
+	cursor: pointer;
+	border: 0;
+}
+
+#myPage:hover {
+	text-decoration: underline;
+}
 </style>
 </head>
 <body>
-
 	<div class="panel_left">
 		<div class="panel_wrap">
-		
 			<%
 				if (session.getAttribute("loginid") == null) {
 			%>
@@ -85,10 +96,10 @@ table, th, td {
 			<div>
 				<a href="logout">로그아웃</a>
 			</div>
-			<form action="getMember" method="post" name="frm">
+			<form action="getMember" method="post">
 				<div>
-					<input type="hidden" value="<%=session.getAttribute("loginid")%>"
-						name="id"> <a href="#" onclick="reg()">마이페이지</a>
+					<input type="hidden" value="<%=session.getAttribute("loginid")%>" name="id">
+					<input type="submit" value="마이페이지" id="myPage">
 				</div>
 			</form>
 			<%
@@ -104,11 +115,5 @@ table, th, td {
 	</div>
 
 	<section></section>
-
-	<script>
-		function reg() {
-			frm.submit();
-		}
-	</script>
 </body>
 </html>
