@@ -198,5 +198,17 @@ public class HomeController {
 		model.addAttribute("list", al);
 		return "freeBoard";
 	}
+	
+	@RequestMapping("/freeDetail")
+	public String freeget(int idx, Model model) {
+		// 리스트에서 글을 클릭하면 idx를 받아서
+		// 실제 화면에 그 idx에 맞는 글을 출력함
+		// 이후 그글을 수정한 후 다음페이지로 넘겨서
+		// 업데이트 할 예정임으로 값을 넘기기 위해서
+		// model 이 필요함.
+		// dao실행해서 가져온 값을 model에 담는 작업 필요
+		model.addAttribute("get", fbDao.get(idx));
+		return "freeDetail";
+	}
 
 }

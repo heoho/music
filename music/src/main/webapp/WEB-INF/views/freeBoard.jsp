@@ -40,7 +40,7 @@ li {
 						<c:forEach var="fbBean" items="${list}">
 							<tr>
 								<td>${fbBean.idx}</td>
-								<td>${fbBean.title}</td>
+								<td><a href="freeDetail?idx=${fbBean.idx}">${fbBean.title}</td>
 								<td>${fbBean.userId}</td>
 								<td>${fbBean.rDate}</td>
 								<td>${fbBean.hit}</td>

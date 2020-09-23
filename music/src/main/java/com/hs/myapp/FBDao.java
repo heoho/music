@@ -25,6 +25,10 @@ public class FBDao {
 	@Value("#{sql['freeBoard.getCount']}")
 	private String getCount;
 	
+	@Value("#{sql['freeBoard.get']}")
+	private String get;
+
+	
 	public int insert(FBBean fbBean) {
 		return jdbcTmp.update(insert,  fbBean.getUserId(), fbBean.getTitle(), fbBean.getContents());
 	}
@@ -39,12 +43,18 @@ public class FBDao {
 		return jdbcTmp.queryForInt(getCount);
 	}
 	
+	public FBBean get(int idx) {
+		FBBean fbBean = jdbcTmp.queryForObject(get, new Integer[] { idx }, new FBMapper());
+		// (쿼리문, 쿼리문에사용될 변수, RowMapper)
+		return fbBean;
+	}
+	
 	class FBMapper implements RowMapper<FBBean> {
 
 		@Override
 		public FBBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 			// TODO Auto-generated method stub
-			FBBean fbBean = new FBBean(rs.getInt(1), rs.getString(2), rs.getString(4), rs.getString(5), rs.getInt(6));
+			FBBean fbBean = new FBBean(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
 			return fbBean;
 		}
 	}

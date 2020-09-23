@@ -17,9 +17,10 @@ public class FBBean {
 		this.contents = contents;
 	}
 	
-	public FBBean(int idx, String title, String userId, String rDate, int hit) {
+	public FBBean(int idx, String title, String contents, String userId, String rDate, int hit) {
 		this.idx = idx;
 		this.title = title;
+		this.contents = contents;
 		this.userId = userId;
 		this.rDate = rDate;
 		this.hit = hit;
