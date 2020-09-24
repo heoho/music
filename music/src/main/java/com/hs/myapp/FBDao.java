@@ -27,6 +27,9 @@ public class FBDao {
 	
 	@Value("#{sql['freeBoard.get']}")
 	private String get;
+	
+	@Value("#{sql['freeBoard.update']}")
+	private String update;
 
 	
 	public int insert(FBBean fbBean) {
@@ -48,6 +51,10 @@ public class FBDao {
 		// (쿼리문, 쿼리문에사용될 변수, RowMapper)
 		return fbBean;
 	}
+	
+	public int update(FBBean fbBean) {
+	return jdbcTmp.update(update, fbBean.getTitle(), fbBean.getContents(), fbBean.getIdx());
+}
 	
 	class FBMapper implements RowMapper<FBBean> {
 

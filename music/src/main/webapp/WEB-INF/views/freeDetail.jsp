@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +35,15 @@ table, th, td {
 			<td>${get.contents}</td>
 		</tr>
 	</table>
+	<c:if test="${get.userId eq loginid}">
+		<input type="button" value="수정하기" onclick="freeUpdate()">
+	</c:if>
 	<input type="button" value="게시판" onclick="freeBoard()">
 	<script>
+		function freeUpdate() {
+			location = "freeGet?idx=${get.idx}";
+		}
+
 		function freeBoard() {
 			location = "freeBoard";
 		}

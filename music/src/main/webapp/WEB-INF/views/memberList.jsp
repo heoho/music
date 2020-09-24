@@ -18,7 +18,6 @@ li {
 </style>
 </head>
 <body>
-
 	<div>전체 페이지 번호 : ${count}</div>
 	<table>
 		<thead>

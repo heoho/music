@@ -81,30 +81,27 @@ table, th, td {
 <body>
 	<div class="panel_left">
 		<div class="panel_wrap">
-			<%
-				if (session.getAttribute("loginid") == null) {
-			%>
-			<div class="active">
-				<a href="goMember">회원가입</a>
-			</div>
-			<div>
-				<a href="goLogin">로그인</a>
-			</div>
-			<%
-				} else {
-			%>
-			<div>
-				<a href="logout">로그아웃</a>
-			</div>
-			<form action="getMember" method="post">
-				<div>
-					<input type="hidden" value="<%=session.getAttribute("loginid")%>" name="id">
-					<input type="submit" value="마이페이지" id="myPage">
-				</div>
-			</form>
-			<%
-				}
-			%>
+			<c:choose>
+				<c:when test="${loginid eq null}">
+					<div class="active">
+						<a href="goMember">회원가입</a>
+					</div>
+					<div>
+						<a href="goLogin">로그인</a>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div>
+						<a href="logout">로그아웃</a>
+					</div>
+					<form action="getMember" method="post">
+						<div>
+							<input type="hidden" value="${loginid}" name="id">
+							<input type="submit" value="마이페이지" id="myPage">
+						</div>
+					</form>
+				</c:otherwise>
+			</c:choose>
 			<div>
 				<a href="freeBoard">게시판</a>
 			</div>

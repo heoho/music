@@ -16,44 +16,36 @@ li {
 	float: left;
 }
 
-#title{
-	background-color: #fff;
-	border: 0;
-	cursor: pointer;
-	color: blue;
-	font-weight: 700;
+a {
+	text-decoration: none;
 }
 </style>
 </head>
 <body>
 	<section>
-
 		<div>전체 페이지 번호 : ${count}</div>
 		<table>
 			<thead>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th>조회수</th>
+				</tr>
 			</thead>
 			<tbody>
 				<c:choose>
 					<c:when test="${count eq 0}">
 						<tr>
-							<td colspan="3" align="center">게시글이 없습니다.</td>
+							<td colspan="5" align="center">게시글이 없습니다.</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="fbBean" items="${list}">
 							<tr>
 								<td>${fbBean.idx}</td>
-								<form action="freeDetail" method="post" name="frm">
-								<td>
-									<input type="hidden" value="${fbBean.idx}" name="idx">
-									<input type="submit" value="${fbBean.title}" id="title">
-								</td>
-								</form>
+								<td><a href="freeDetail?idx=${fbBean.idx}">${fbBean.title}</a></td>
 								<td>${fbBean.userId}</td>
 								<td>${fbBean.rDate}</td>
 								<td>${fbBean.hit}</td>
@@ -85,15 +77,15 @@ li {
 		</ul>
 		<input type="button" value="글쓰기" onclick="freeWrite()">
 		<input type="button" value="메인" onclick="main()">
+	</section>
+	<script>
+		function freeWrite() {
+			location.href = "goFreeWrite";
+		}
 
-		<script>
-			function freeWrite() {
-				location.href = "goFreeWrite";
-			}
-
-			function main() {
-				location.href = "main";
-			}
-		</script>
+		function main() {
+			location.href = "main";
+		}
+	</script>
 </body>
 </html>
