@@ -9,7 +9,7 @@
 <body>
 	<script>
 		alert("삭제 되었습니다.");
-		location.href = "main";
+		location.href = "freeBoard";
 	</script>
 </body>
 </html>

@@ -37,11 +37,16 @@ table, th, td {
 	</table>
 	<c:if test="${get.userId eq loginid}">
 		<input type="button" value="수정하기" onclick="freeUpdate()">
+		<input type="button" value="삭제하기" onclick="freeDelete()">
 	</c:if>
 	<input type="button" value="게시판" onclick="freeBoard()">
 	<script>
 		function freeUpdate() {
 			location = "freeGet?idx=${get.idx}";
+		}
+
+		function freeDelete() {
+			location = "freeDelete?idx=${get.idx}";
 		}
 
 		function freeBoard() {

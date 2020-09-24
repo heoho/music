@@ -159,7 +159,7 @@ public class HomeController {
 		fbDao.insert(new FBBean(userId, title, contents));
 		return "redirect:freeBoard";
 	}
-	
+
 	@RequestMapping("/freeBoard")
 	public String freeList(@RequestParam(value = "pageNum", required = false, defaultValue = "1") String strNum,
 			Model model) {
@@ -199,7 +199,7 @@ public class HomeController {
 		model.addAttribute("list", al);
 		return "freeBoard";
 	}
-	
+
 	@RequestMapping("/freeDetail")
 	public String freeDetail(int idx, Model model) {
 		// 리스트에서 글을 클릭하면 idx를 받아서
@@ -211,7 +211,7 @@ public class HomeController {
 		model.addAttribute("get", fbDao.get(idx));
 		return "freeDetail";
 	}
-	
+
 	@RequestMapping("/freeGet")
 	public String freeget(int idx, Model model) {
 		// 리스트에서 글을 클릭하면 idx를 받아서
@@ -223,11 +223,18 @@ public class HomeController {
 		model.addAttribute("get", fbDao.get(idx));
 		return "freeUpdate";
 	}
-	
+
 	@RequestMapping("/freeUpdate")
 	public String freeUpdate(FBBean fbBean) {
 		fbDao.update(fbBean);
 		return "redirect:freeBoard";
+	}
+
+	@RequestMapping("/freeDelete")
+	public String freeDelete(int idx) {
+		// 실제로 삭제되는 코드 = dao 실행
+		fbDao.delete(idx);
+		return "freeDelete";
 	}
 
 }
