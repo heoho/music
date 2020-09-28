@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	$('.btn_ok').prop("disabled", true);
 	$('tbody').children("tr").eq(8).hide();
 	$('.certification').click(function() {
 		$('tbody').children("tr").eq(8).show();

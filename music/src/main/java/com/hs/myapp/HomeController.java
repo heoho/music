@@ -1,13 +1,17 @@
 package com.hs.myapp;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,10 +62,34 @@ public class HomeController {
 	}
 
 	@RequestMapping("/member")
-	public String insert(String id, String pw, String name, int day, String calendar, String gen, String email1, String email2, int tel) {
+	public String insert(String id, String pw, String name, int day, String calendar, String gen, String email1,
+			String email2, int tel) {
 		// 실제로 DB에 넣는 코드 = dao 실행
 		memberDao.insert(new MemberBean(id, pw, name, day, calendar, gen, email1, email2, tel));
 		return "redirect:main";
+	}
+
+	@RequestMapping("Ajaxtmpok")
+	public void Ajaxtmpok(String id, boolean result, HttpServletResponse res) {
+		result = memberDao.idCheck(id);
+		PrintWriter out;
+		try {
+			String str = "사용할수 없는 아이디 입니다.";
+			if (id.length() > 5) {
+				if (!result) {
+					str = "사용할 수 있는 아이디 입니다.";
+				}
+			} else {
+				str = "아이디는 5자리 이상으로 작성 하셔야합니다";
+			}
+			out = res.getWriter();
+			JSONObject json = new JSONObject();
+			json.put("result", str);
+			out.println(json.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@RequestMapping("/memberList")

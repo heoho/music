@@ -52,6 +52,10 @@ table {
 	text-indent: 10px;
 }
 
+.result{
+	color:#fff;
+}
+
 .input_member::placeholder {
 	color: #777;
 }
@@ -96,7 +100,7 @@ label {
 	width: 100px;
 }
 
-.certification {
+.certification, .idCheck {
 	width: 120px;
 	margin-left: 5px;
 	border: 1px solid #b9b9b9;
@@ -126,6 +130,16 @@ label {
 }
 
 .btn_ok {
+	padding: 0 40px;
+	background-color: #2d2d2d;
+	border: 1px solid #fff;
+	border-radius: 30px;
+	font-size: 18px;
+	color: #ccc;
+	line-height: 50px;
+}
+
+.btn_ok2 {
 	padding: 0 40px;
 	background-color: #161616;
 	border: 1px solid #bfbfbf;

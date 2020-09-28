@@ -29,21 +29,32 @@ public class MemberDao {
 
 	@Value("#{sql['member.get']}")
 	private String get;
-	
+
 	@Value("#{sql['member.update']}")
 	private String update;
-	
+
 	@Value("#{sql['member.delete']}")
 	private String delete;
-	
+
 	@Value("#{sql['member.getCount']}")
 	private String getCount;
 
+	@Value("#{sql['member.idCheck']}")
+	private String idCheck;
+
 	public int insert(MemberBean memberBean) {
-		System.out.println(memberBean.getEmail1()+memberBean.getEmail2());
-		return jdbcTmp.update(insert, 
-				memberBean.getId(), memberBean.getPw(), memberBean.getName(), memberBean.getDay(), 
-				memberBean.getCalendar(), memberBean.getGen(), memberBean.getEmail1()+"@"+memberBean.getEmail2(), memberBean.getTel());
+		return jdbcTmp.update(insert, memberBean.getId(), memberBean.getPw(), memberBean.getName(), memberBean.getDay(),
+				memberBean.getCalendar(), memberBean.getGen(), memberBean.getEmail1() + "@" + memberBean.getEmail2(),
+				memberBean.getTel());
+	}
+
+	public boolean idCheck(String id) {
+		boolean result = false;
+		int a = jdbcTmp.queryForInt(idCheck, id);
+		if (a > 0) {
+			result = true;
+		}
+		return result;
 	}
 
 	public ArrayList<MemberBean> getList(int start, int end) {
@@ -66,11 +77,11 @@ public class MemberDao {
 	public int update(MemberBean memberBean) {
 		return jdbcTmp.update(update, memberBean.getPw(), memberBean.getName(), memberBean.getId());
 	}
-	
+
 	public int delete(String id) {
 		return jdbcTmp.update(delete, id);
 	}
-	
+
 	public int getCount() {
 		return jdbcTmp.queryForInt(getCount);
 	}
@@ -80,7 +91,8 @@ public class MemberDao {
 		@Override
 		public MemberBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 			// TODO Auto-generated method stub
-			MemberBean memberBean = new MemberBean(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
+			MemberBean memberBean = new MemberBean(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+					rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
 			return memberBean;
 		}
 	}
