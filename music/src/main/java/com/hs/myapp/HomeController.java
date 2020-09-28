@@ -58,9 +58,9 @@ public class HomeController {
 	}
 
 	@RequestMapping("/member")
-	public String insert(String id, String pw, String name) {
+	public String insert(String id, String pw, String name, int day, String calendar, String gen, String email1, String email2, int tel) {
 		// 실제로 DB에 넣는 코드 = dao 실행
-		memberDao.insert(new MemberBean(id, pw, name));
+		memberDao.insert(new MemberBean(id, pw, name, day, calendar, gen, email1, email2, tel));
 		return "redirect:main";
 	}
 

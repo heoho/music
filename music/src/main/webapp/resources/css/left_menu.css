@@ -1,0 +1,46 @@
+.panel_left {
+	position: fixed;
+	background-color: #161616;
+	border-right: 1px solid #ccc;
+	height: 100vh;
+	width: 310px;
+}
+
+.panel_wrap {
+	padding-top: 300px;
+	text-align: center;
+}
+
+.panel_wrap div {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #777;
+}
+
+.panel_wrap div:first-child {
+	border-top: 1px solid #666;
+}
+
+.panel_wrap div a {
+	color: #ccc;
+	font-size: 22px;
+	font-weight: 700;
+}
+
+.panel_wrap div a:hover {
+	color: #fff;
+	border-bottom: 1px solid #fff;
+}
+
+#myPage {
+	background-color: #161616;
+	color: #ccc;
+	font-size: 22px;
+	font-weight: 700;
+	cursor: pointer;
+	border: 0;
+}
+
+#myPage:hover {
+	text-decoration: underline;
+}

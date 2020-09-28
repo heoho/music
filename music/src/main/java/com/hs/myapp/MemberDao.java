@@ -40,7 +40,10 @@ public class MemberDao {
 	private String getCount;
 
 	public int insert(MemberBean memberBean) {
-		return jdbcTmp.update(insert, memberBean.getId(), memberBean.getPw(), memberBean.getName());
+		System.out.println(memberBean.getEmail1()+memberBean.getEmail2());
+		return jdbcTmp.update(insert, 
+				memberBean.getId(), memberBean.getPw(), memberBean.getName(), memberBean.getDay(), 
+				memberBean.getCalendar(), memberBean.getGen(), memberBean.getEmail1()+"@"+memberBean.getEmail2(), memberBean.getTel());
 	}
 
 	public ArrayList<MemberBean> getList(int start, int end) {
@@ -77,7 +80,7 @@ public class MemberDao {
 		@Override
 		public MemberBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 			// TODO Auto-generated method stub
-			MemberBean memberBean = new MemberBean(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+			MemberBean memberBean = new MemberBean(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(10));
 			return memberBean;
 		}
 	}
