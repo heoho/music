@@ -46,11 +46,13 @@ body {
 							</tr>
 							<tr>
 								<th>비밀번호 *</th>
-								<td><input type="text" name="pw" class="input_member"></td>
+								<td><input type="text" name="pw" class="input_member">
+									<div class="result02"></div></td>
 							</tr>
 							<tr>
 								<th>비밀번호 확인 *</th>
-								<td><input type="text" name="pw_check" class="input_member"></td>
+								<td><input type="text" name="pw_check" class="input_member">
+									<div class="result03"></div></td>
 							</tr>
 							<tr>
 								<th>이름 *</th>
@@ -122,33 +124,6 @@ body {
 			location = "main";
 		}
 
-		$(function() {
-			$(".idCheck").click(function() {
-				var params = "id=" + $("input[name=id]").val();
-				$.ajax({
-					type : "POST",
-					url : "Ajaxtmpok",
-					data : params,
-					dataType : "json", //받는 type은 json방식
-					success : function(args) { // 결과값이 json방식으로 args로 들어온 상태
-						if (args.result == "사용할 수 있는 아이디 입니다.") {
-							$(".result").html(args.result);
-							$('.btn_ok').addClass('btn_ok2');
-							$('.btn_ok2').removeClass('btn_ok');
-							$('.btn_ok2').prop("disabled", false);
-						} else {
-							$(".result").html(args.result);
-							$('.btn_ok2').addClass('btn_ok');
-							$('.btn_ok').removeClass('btn_ok2');
-							$('.btn_ok').prop("disabled", true);
-						}
-					},
-					error : function(args) {
-						$(".result").html(args.responseText + "<br>에러 발생!");
-					}
-				});
-			});
-		});
 	</script>
 </body>
 </html>
